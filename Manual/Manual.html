@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DREAM</title>
+    <link rel="stylesheet" type="text/css" href="DREAM_Materials/Manual.css">
+</head>
+<body>
+<h2 class="titleHead">DREAM</h2>
+<h3>Contents</h3>
+<span>
+    <a href="#overview">1. Overview</a><br>
+    <a href="#installation">2. Running inside Matlab</a><br>
+    &nbsp;&nbsp;&nbsp; <a href="#command-line">Command-line</a><br>
+    &nbsp;&nbsp;&nbsp; <a href="#interface">Interface</a><br>
+    <a href="#starting">3. Using DREAM</a><br>
+    <a href="#format">4. Input data Format</a><br>
+    &nbsp;&nbsp;&nbsp; <a href="#brain image">Brain Image</a><br>
+    &nbsp;&nbsp;&nbsp; <a href="#headmotion">Head Motion Data</a><br>
+    &nbsp;&nbsp;&nbsp; <a href="#other">Other Format</a><br>
+    <a href="#decode">5. Decode</a><br>
+    <a href="#mapping">6. Mapping</a><br>
+    <a href="#result">7.Result</a><br>
+</span>
+<span>
+    <h3><a id="overview">1.Overview</a></h3>
+    <span class="cmbx-10x-x-109">DREAM --A Toolbox to Decode Rhythms of the Brain System </span>
+    is a MATLAB-based toolbox which could decoding rhythms of the brain to seveal differents frequnency bands which decided by your own data.
+</span>
+<span>
+    <h3><a id="installation">2. Running inside Matlab</a></h3>
+    <h4><a id="command-line"> &nbsp;&nbsp; Command-line</a></h4>
+    &nbsp;&nbsp;&nbsp;You can add DREAM to MATLAB's path with following command:
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>>addpath(genpath('E:\Brainsoft\DREAM'))
+    <br>&nbsp;&nbsp;&nbsp;where 'E:\Brainsoft\DREAM' is the location of your DREAM.
+    <h4><a id="interface"> &nbsp;&nbsp; Interface</a></h4>
+    &nbsp;&nbsp;&nbsp;1. Click ”Add with Subfolders...” button and select your DREAM path. i.e. "E:\Brainsoft\DREAM".
+    <br> &nbsp;&nbsp;&nbsp;2. Save your change.
+</span>
+<span>
+    <h3><a id="starting">3. Using DREAM</a></h3>
+    Typing DREAM at the prompt to active DREAM GUI
+    <br>Please run DREAM as following steps:
+        <br>1.You should first decode your data to compute frequency bands by Click Decode.
+    <br>2.After divide your data by frequency you can map your data into several frequency bands by using Mapping function.
+    <div style="text-align: center;">
+    <img src="DREAM_Materials/dream.jpg" alt="">
+    </div>
+</span>
+<span>
+    <h3><a id="format">4.Input data Format</a></h3>
+    <h4><a id="brain image">&nbsp;&nbsp;&nbsp;Brain Image</a></h4>
+    &nbsp;&nbsp;&nbsp;DREAM support fMRI sequences with compressed NIFTI format ending with '.nii.gz'
+    <h4><a id="headmotion">&nbsp;&nbsp;&nbsp;Head Motion Data</a></h4>
+        &nbsp;&nbsp;&nbsp;Head motion data should be organized into the follow format:
+    <br>&nbsp;&nbsp;&nbsp;Roll  = rotation about the I-S axis.
+    <br>&nbsp;&nbsp;&nbsp;Pitch = rotation about the R-L axis.
+    <br>&nbsp;&nbsp;&nbsp;Yaw   = rotation about the A-P axis.
+    <br>&nbsp;&nbsp;&nbsp;ZdS  = displacement in the Superior direction.
+    <br>&nbsp;&nbsp;&nbsp;XdL  = displacement in the Left direction.
+    <br>&nbsp;&nbsp;&nbsp;YdP  = displacement in the Posterior direction.
+    <br>&nbsp;&nbsp;&nbsp;The *.1D file should be contain 6 lines and n rows where n is your time points.
+    <h4><a id="other">&nbsp;&nbsp;&nbsp;Other Format</a></h4>
+    &nbsp;&nbsp;&nbsp;DRAM will support divding EEG, MEG and other type of data in a recent update.
+</span>
+<span>
+    <h3><a id="decode">5. Decode</a></h3>
+    <div style="text-align: center;">
+    <img src="DREAM_Materials/Decode.jpg" alt="">
+    </div>
+    <span>
+        Data Type: Choose your data type. e.g. NIFTI
+    <br>Working Directory: Choose your working directory. e.g. E:\BrainData
+    <br>Sublist: Choose a list file which contain all you subjects. e.g. E:\BrainData\sublist.list
+    <br>TR(s): The time of repeat of data signal. e.g. 2
+    <br>Data Dir: The name of data directory e.g. func
+    <br>Data Name: The name of data. e.g. rest
+    <br>
+    <br>After you finish data set, the filelist area would list all you data.
+    <br>You can delete the file by double-click the data name in the filelist!
+    </span>
+</span>
+<span>
+    <h3><a id="mapping">6. Mapping</a></h3>
+    <div style="text-align: center;">
+        <img src="DREAM_Materials/Mapping.jpg" alt="">
+    </div>
+    <span>
+        Data Type: Choose your data type. e.g. 1D
+    <br>Choose a csv: Choose a .csv which made by step.1 e.g. E:\BrainData\sub001\frequency.csv
+    <br>Select a frequency: Select the frequency band which you want e.g. 2
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(If you want to get all frequency bands, input 0).
+    </span>
+</span>
+<span>
+    <h3><a id="result">7.Result</a></h3>
+    <span>
+        Decode:
+        <br>After Decode, one folder is created in each subject's folder,
+        named by your chosen data name(without suffix).
+        <div style="text-align: center;">
+        <img src="DREAM_Materials/result decode.jpg" alt="">
+        </div>
+        The freqbands.csv contains all frequency bands decoded from your data.
+    </span>
+    <br>
+    <span>
+        Mapping:
+        <br>After Mapping, some folders are created in each subject's folder
+        which name is same with your chosen data name(without suffix).
+        <div style="text-align: center;">
+        <img src="DREAM_Materials/result mapping.jpg" alt="">
+        </div>
+        In these directories, *FBsn are created.
+        <br>* is same with your chosen data name(without suffix)
+        <br>n represent the number of frequency bands which you inputed in Mapping function.
+    </span>
+
+</span>
+</body>
+</html>
